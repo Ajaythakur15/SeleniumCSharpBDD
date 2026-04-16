@@ -41,37 +41,16 @@ namespace SeleniumCSharpBDD.Pages
         public bool SearchEmployeeById(string employeeId)
         {
             Driver.Navigate().GoToUrl($"{AppUrl}/web/index.php/pim/viewEmployeeList");
-
-            // Wait for the page to fully load before interacting
-            WaitForVisible(FieldByLabel("Employee Id"));
-
             Type(FieldByLabel("Employee Id"), employeeId);
             Click(SearchButton);
 
-            // Wait for search results to load - either show the employee or "No Records Found"
             return Wait.Until(driver =>
-            {
-                try
-                {
-                    var tableCards = driver.FindElements(By.XPath($"//div[contains(@class,'oxd-table-card')][.//*[normalize-space()='{employeeId}']]"));
-                    var noRecordsMessage = driver.FindElements(By.XPath("//div[contains(@class,'orangehrm-no-data')]"));
-
-                    return tableCards.Any() ||
-                           noRecordsMessage.Any() ||
-                           driver.PageSource.Contains("No Records Found", StringComparison.OrdinalIgnoreCase);
-                }
-                catch
-                {
-                    return false;
-                }
-            });
+                driver.FindElements(By.XPath($"//div[contains(@class,'oxd-table-card')][.//*[normalize-space()='{employeeId}']]")).Any() ||
+                driver.PageSource.Contains("No Records Found", StringComparison.OrdinalIgnoreCase));
         }
 
         public bool IsEmployeePresent(string employeeId)
         {
-            // Wait a moment for the page to stabilize after search
-            Wait.Until(driver => driver.FindElements(By.XPath("//div[contains(@class,'oxd-table')]")).Any());
-
             return Driver.FindElements(By.XPath($"//div[contains(@class,'oxd-table-card')][.//*[normalize-space()='{employeeId}']]")).Any();
         }
 
@@ -82,10 +61,7 @@ namespace SeleniumCSharpBDD.Pages
 
             Click(deleteButton);
             Click(By.XPath("//button[contains(.,'Yes, Delete')]"));
-
-            // Wait for the success message and allow time for backend processing
             IsTextVisible("Successfully Deleted");
-            Wait.Until(driver => !driver.FindElements(deleteButton).Any());
         }
 
         private static By FieldByLabel(string label)

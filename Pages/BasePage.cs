@@ -45,7 +45,33 @@ namespace SeleniumCSharpBDD.Pages
 
         protected void Click(By locator)
         {
-            WaitForClickable(locator).Click();
+            var element = WaitForClickable(locator);
+
+            try
+            {
+                ScrollIntoView(element);
+                element.Click();
+            }
+            catch (ElementClickInterceptedException)
+            {
+                element = WaitForClickable(locator);
+                ScrollIntoView(element);
+
+                try
+                {
+                    element.Click();
+                }
+                catch (ElementClickInterceptedException)
+                {
+                    JavaScriptClick(element);
+                }
+            }
+            catch (StaleElementReferenceException)
+            {
+                element = WaitForClickable(locator);
+                ScrollIntoView(element);
+                element.Click();
+            }
         }
 
         protected void Type(By locator, string value)
@@ -76,6 +102,24 @@ namespace SeleniumCSharpBDD.Pages
         protected bool ElementExists(By locator)
         {
             return Wait.Until(driver => driver.FindElements(locator).Any(element => element.Displayed));
+        }
+
+        private void ScrollIntoView(IWebElement element)
+        {
+            if (Driver is IJavaScriptExecutor jsExecutor)
+            {
+                jsExecutor.ExecuteScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", element);
+            }
+        }
+
+        private void JavaScriptClick(IWebElement element)
+        {
+            if (Driver is not IJavaScriptExecutor jsExecutor)
+            {
+                throw new InvalidOperationException("Driver does not support JavaScript execution.");
+            }
+
+            jsExecutor.ExecuteScript("arguments[0].click();", element);
         }
     }
 }

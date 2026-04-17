@@ -11,7 +11,6 @@ jobs:
 smoke-tests:
 runs-on: ubuntu-latest
 
-```
 services:
   selenium:
     image: selenium/standalone-chrome:latest
@@ -40,13 +39,11 @@ steps:
 
   - name: Run Smoke Tests
     run: dotnet test --filter "TestCategory=smoke"
-```
 
 regression-tests:
 needs: smoke-tests
 runs-on: ubuntu-latest
 
-```
 services:
   selenium:
     image: selenium/standalone-chrome:latest
@@ -75,16 +72,13 @@ steps:
 
   - name: Run Regression Tests
     run: dotnet test --filter "TestCategory=regression"
-```
 
 upload-report:
 needs: regression-tests
 runs-on: ubuntu-latest
 
-```
 steps:
   - uses: actions/upload-artifact@v4
     with:
       name: orangehrm-report-${{ github.run_number }}
       path: TestResults
-```

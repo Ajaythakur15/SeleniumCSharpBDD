@@ -1,0 +1,36 @@
+name: Automation Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build
+        run: dotnet build
+
+      - name: Wait for Grid
+        run: sleep 10
+
+      - name: Run Tests
+        env:
+          HEADLESS: "true"
+          SELENIUM_REMOTE_URL: "http://localhost:4444/wd/hub"
+          REPORT_DIR: "TestResults"
+        run: dotnet test

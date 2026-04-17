@@ -3,7 +3,7 @@ name: OrangeHRM Selenium E2E
 on:
   workflow_dispatch:
   push:
-    branches:[main]
+    branches:[ main ]
   pull_request:
  
 jobs:

@@ -15,6 +15,7 @@ namespace SeleniumCSharpBDD.Utils
             {
                 var reportsDirectory = FrameworkConfig.ReportDirectory;
                 Directory.CreateDirectory(reportsDirectory);
+                Directory.CreateDirectory(Path.Combine(reportsDirectory, "Screenshots"));
 
                 var path = Path.Combine(reportsDirectory, "ExtentReport.html");
 

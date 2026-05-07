@@ -4,8 +4,8 @@
 [![Selenium](https://img.shields.io/badge/Selenium-WebDriver-43B02A?logo=selenium&logoColor=white)](https://www.selenium.dev/)
 [![SpecFlow](https://img.shields.io/badge/BDD-SpecFlow-FF6F00)](https://specflow.org/)
 [![Docker](https://img.shields.io/badge/Docker-Grid-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-[![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/ajay9761/SeleniumCSharpBDD/actions)
-[![Workflow Status](https://github.com/ajay9761/SeleniumCSharpBDD/actions/workflows/e2e-docker.yml/badge.svg)](https://github.com/ajay9761/SeleniumCSharpBDD/actions/workflows/e2e-docker.yml)
+[![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/Ajaythakur15/SeleniumCSharpBDD/actions)
+[![Workflow Status](https://github.com/Ajaythakur15/SeleniumCSharpBDD/actions/workflows/e2e-docker.yml/badge.svg)](https://github.com/ajay9761/SeleniumCSharpBDD/actions/workflows/e2e-docker.yml)
 
 Production-style Selenium automation framework for OrangeHRM built with C#, SpecFlow, NUnit, Dockerized Selenium Grid, and Extent Reports.
 
@@ -20,7 +20,7 @@ This project demonstrates how to design a maintainable UI automation framework t
 
 Repository:
 
-- [ajay9761/SeleniumCSharpBDD](https://github.com/ajay9761/SeleniumCSharpBDD)
+- [Ajaythakur15/SeleniumCSharpBDD](https://github.com/Ajaythakur15/SeleniumCSharpBDD.git))
 
 Application under test:
 

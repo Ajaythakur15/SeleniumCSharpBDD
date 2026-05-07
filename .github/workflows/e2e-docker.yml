@@ -26,8 +26,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Build Docker images
+        run: docker compose build
+
       - name: Run E2E tests in Docker Compose
-        run: docker compose up --build --abort-on-container-exit --exit-code-from tests
+        run: docker compose up --abort-on-container-exit --exit-code-from tests
 
       - name: Upload Extent report
         if: always()

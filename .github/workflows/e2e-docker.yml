@@ -53,6 +53,20 @@ jobs:
           path: TestResults/**/Screenshots
           if-no-files-found: warn
 
+      - name: Capture Docker Compose logs
+        if: always()
+        run: |
+          mkdir -p ci-logs
+          docker compose logs --no-color > ci-logs/docker-compose.log
+
+      - name: Upload Docker Compose logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orangehrm-docker-logs
+          path: ci-logs/docker-compose.log
+          if-no-files-found: warn
+
       - name: Stop containers
         if: always()
         run: docker compose down --remove-orphans

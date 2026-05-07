@@ -23,7 +23,10 @@ namespace SeleniumCSharpBDD.Utils
         public static string ChromeUserDataDir => Get("CHROME_USER_DATA_DIR", Settings.Value.ChromeUserDataDir);
 
         public static string ReportDirectory => Path.GetFullPath(
-            Get("REPORT_DIR", Path.Combine(ProjectRoot, "TestResults", RunName)));
+            Path.Combine(ReportBaseDirectory, RunName));
+
+        public static string ReportBaseDirectory => Path.GetFullPath(
+            Get("REPORT_DIR", Path.Combine(ProjectRoot, "TestResults")));
 
         public static string RunName => CurrentRunName.Value;
 

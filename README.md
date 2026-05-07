@@ -1,51 +1,65 @@
-# Selenium C# BDD Framework with SpecFlow, Docker Grid, and Extent Reports
+# OrangeHRM UI Automation Framework in C#
 
-This repository is a production-style UI automation framework built with:
+[![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![Selenium](https://img.shields.io/badge/Selenium-WebDriver-43B02A?logo=selenium&logoColor=white)](https://www.selenium.dev/)
+[![SpecFlow](https://img.shields.io/badge/BDD-SpecFlow-FF6F00)](https://specflow.org/)
+[![Docker](https://img.shields.io/badge/Docker-Grid-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/ajay9761/SeleniumCSharpBDD/actions)
+[![Workflow Status](https://github.com/ajay9761/SeleniumCSharpBDD/actions/workflows/e2e-docker.yml/badge.svg)](https://github.com/ajay9761/SeleniumCSharpBDD/actions/workflows/e2e-docker.yml)
 
-- C#
-- Selenium WebDriver
-- SpecFlow for BDD
-- NUnit
-- Dockerized Selenium Grid
-- Extent Reports
-- GitHub Actions CI
+Production-style Selenium automation framework for OrangeHRM built with C#, SpecFlow, NUnit, Dockerized Selenium Grid, and Extent Reports.
 
-It uses the OrangeHRM demo application as the system under test:
+This project demonstrates how to design a maintainable UI automation framework that supports:
+
+- local browser execution
+- remote Selenium Grid execution
+- CI execution in GitHub Actions
+- environment-driven configuration
+- reusable Page Object Model design
+- HTML reporting with screenshots
+
+Repository:
+
+- [ajay9761/SeleniumCSharpBDD](https://github.com/ajay9761/SeleniumCSharpBDD)
+
+Application under test:
 
 - `https://opensource-demo.orangehrmlive.com/`
 
-## Why This Project Matters
+## Demo Snapshot
 
-This project is designed to demonstrate the kind of automation framework expected in a real QA or SDET environment:
+![OrangeHRM Dashboard Automation](docs/assets/orangehrm-dashboard.png)
 
-- readable BDD scenarios
-- maintainable Page Object Model structure
-- local and Docker Grid execution
-- CI-ready workflow
-- environment-based configuration
-- reusable driver setup
-- automatic reporting and screenshots
-- test data cleanup after execution
+## Why This Project Is Strong for Portfolio / Interview Use
 
-## Key Features
+This is not just a test script collection. It shows framework-level thinking:
 
-- SpecFlow feature files with tagged execution
-- Selenium Grid support through Docker
-- Local Chrome and remote Grid browser switching
-- Explicit waits and resilient click handling for CI/headless stability
-- Extent report generation with screenshots on failure
-- Timestamped test output folders
-- GitHub Actions workflow for automated execution
-- Module-specific page objects for OrangeHRM
-- PIM employee create/search/delete end-to-end scenario
+- BDD scenario design with SpecFlow
+- reusable driver factory for local and Grid execution
+- CI-friendly stability improvements for headless and Docker runs
+- modular page objects with module-specific validations
+- test-data cleanup handling
+- artifact publishing through GitHub Actions
 
-## Current Test Coverage
+## Feature Highlights
+
+- Selenium WebDriver with C# and .NET 8
+- SpecFlow Gherkin scenarios with tagged execution
+- NUnit test execution
+- Local Chrome and Docker Grid browser switching
+- Extent HTML reports and failure screenshots
+- Retry for transient WebDriver/Grid startup failures
+- Click hardening for headless/CI environments
+- Config through `appsettings.json` plus environment overrides
+- GitHub Actions CI pipeline
+
+## Current Coverage
 
 ### Login
 
-- Valid login with admin credentials
+- Valid admin login
 
-### Module Validation
+### OrangeHRM module validation
 
 - Admin
 - PIM
@@ -60,116 +74,73 @@ This project is designed to demonstrate the kind of automation framework expecte
 - Claim
 - Buzz
 
-### End-to-End Flow
+### End-to-end flow
 
 - Create employee in PIM
 - Search employee in PIM
 - Delete employee in PIM
-- Verify employee no longer appears in results
+- Verify the employee no longer appears in search results
 
-## Framework Architecture
+## Architecture
 
 ```text
 SeleniumCSharpBDD
-├── .github/workflows/        # GitHub Actions CI
-├── Drivers/                  # Local/Grid WebDriver creation
-├── Features/                 # SpecFlow feature files
-├── Hooks/                    # Before/After scenario hooks
-├── Pages/                    # Page objects
-│   └── Modules/              # Module-specific page objects
-├── StepDefinitions/          # Step bindings
-├── Utils/                    # Config, reporting, screenshots, test data helpers
-├── docker-compose.yml        # Selenium Grid + test runner
-├── Dockerfile                # Test execution image
-├── appsettings.json          # Default framework settings
-└── SeleniumCSharpBDD.csproj  # .NET test project
+|-- .github/workflows/        # GitHub Actions CI
+|-- Drivers/                  # Local/Grid WebDriver creation
+|-- Features/                 # SpecFlow feature files
+|-- Hooks/                    # Before/After scenario hooks
+|-- Pages/                    # Page objects
+|   `-- Modules/              # Module-specific page objects
+|-- StepDefinitions/          # Step bindings
+|-- Utils/                    # Config, reporting, screenshots, test-data helpers
+|-- docs/assets/              # README screenshots/media
+|-- docker-compose.yml        # Selenium Grid + test runner
+|-- Dockerfile                # Test execution image
+|-- appsettings.json          # Default settings
+`-- SeleniumCSharpBDD.csproj  # .NET test project
 ```
 
 ## Tech Stack
 
 | Area | Technology |
 | --- | --- |
-| Language | C# (.NET 8) |
-| Test Runner | NUnit |
-| BDD | SpecFlow |
+| Language | C# |
+| Runtime | .NET 8 |
 | UI Automation | Selenium WebDriver |
+| BDD | SpecFlow |
+| Test Runner | NUnit |
 | Reporting | Extent Reports |
-| Container Execution | Docker + Selenium Grid |
-| CI | GitHub Actions |
+| Containers | Docker |
+| Remote Browser Execution | Selenium Grid |
+| CI/CD | GitHub Actions |
 
-## Configuration
+## Execution Modes
 
-The framework supports both `appsettings.json` and environment-variable overrides.
-
-### `appsettings.json`
-
-Default settings live in:
-
-```text
-appsettings.json
-```
-
-### Supported Environment Variables
-
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `APP_URL` | `https://opensource-demo.orangehrmlive.com/` | Target application URL |
-| `BROWSER` | `chrome` | Browser name |
-| `HEADLESS` | `true` | Headless browser execution |
-| `SELENIUM_REMOTE_URL` | empty | Empty = local execution, populated = Grid execution |
-| `REPORT_DIR` | `TestResults/<timestamp>` | Report and screenshot output folder |
-| `RUN_NAME` | timestamp | Run folder name |
-| `DRIVER_STARTUP_RETRIES` | `2` | Retry count for transient browser/Grid startup issues |
-| `EXPLICIT_WAIT_SECONDS` | `20` | Default explicit wait timeout |
-| `CHROME_BINARY_PATH` | empty | Optional explicit Chrome path |
-| `CHROME_USER_DATA_DIR` | temp profile | Optional Chrome user data directory |
-
-Use this file as a local template:
-
-```text
-.env.example
-```
-
-## Run the Framework
-
-### 1. Local execution
+### Local execution
 
 ```powershell
 dotnet test
 ```
 
-### 2. Local headless execution
+### Local headless execution
 
 ```powershell
 $env:HEADLESS="true"
 dotnet test
 ```
 
-### 3. Local execution with fixed report folder
-
-```powershell
-$env:REPORT_DIR="C:\QA\SeleniumCSharpBDD\TestResults"
-dotnet test
-```
-
-### 4. Run against Docker Grid from host
-
-Start Grid:
+### Docker Grid from host
 
 ```powershell
 docker compose up -d selenium
-```
 
-Run tests from Windows against the Grid:
-
-```powershell
 $env:SELENIUM_REMOTE_URL="http://localhost:4444/wd/hub"
 $env:HEADLESS="true"
 $env:REPORT_DIR="C:\QA\SeleniumCSharpBDD\TestResults"
 dotnet test
 ```
 
-### 5. Run everything with Docker Compose
+### Full Docker execution
 
 ```powershell
 docker compose up --build --abort-on-container-exit
@@ -181,9 +152,32 @@ docker compose up --build --abort-on-container-exit
 - Grid status: `http://localhost:4444/status`
 - noVNC browser view: `http://localhost:7900`
 
-## Test Tags
+## Configuration
 
-Run targeted test sets using NUnit category filters generated from SpecFlow tags:
+The framework supports `appsettings.json` defaults with environment-variable overrides.
+
+### Main settings
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `APP_URL` | OrangeHRM demo URL | Target application |
+| `BROWSER` | `chrome` | Browser selection |
+| `HEADLESS` | `true` | Headless browser execution |
+| `SELENIUM_REMOTE_URL` | empty | Empty = local browser, populated = Grid |
+| `REPORT_DIR` | `TestResults/<timestamp>` | Report and screenshot output folder |
+| `RUN_NAME` | timestamp | Run folder name |
+| `DRIVER_STARTUP_RETRIES` | `2` | Retry count for transient startup failures |
+| `EXPLICIT_WAIT_SECONDS` | `20` | Explicit wait timeout |
+| `CHROME_BINARY_PATH` | empty | Optional Chrome binary path |
+| `CHROME_USER_DATA_DIR` | temp profile | Optional isolated Chrome profile |
+
+Local template:
+
+```text
+.env.example
+```
+
+## Test Tags
 
 ```powershell
 dotnet test --filter "TestCategory=smoke"
@@ -193,12 +187,12 @@ dotnet test --filter "TestCategory=docker"
 dotnet test --filter "TestCategory=login"
 ```
 
-## Reports
+## Reporting
 
-The framework generates:
+The framework produces:
 
 - Extent HTML report
-- Failure screenshots
+- failure screenshots
 
 Default output:
 
@@ -217,22 +211,22 @@ GitHub Actions workflow:
 
 What it does:
 
-- checks out the repository
-- restores and builds the .NET test project
+- checks out the repo
+- restores and builds the project
 - starts Selenium standalone Chrome as a service
-- runs the tagged test suite
-- uploads the Extent report as a workflow artifact
+- runs the tagged E2E suite
+- uploads the Extent report as an artifact
 
-## Stability Enhancements Included
+## Stability Enhancements
 
-- explicit waits instead of fragile timing assumptions
-- local/Grid driver switching from config
-- retry logic for transient WebDriver startup failures
-- scroll and JavaScript click fallback for intercepted clicks
+- explicit waits instead of sleep-based timing
+- resilient click handling for intercepted clicks
+- scroll + JavaScript click fallback
 - isolated Chrome profile handling
-- test data registry and cleanup support
+- retry logic for transient WebDriver/Grid startup failures
+- test-data registry and cleanup support
 
-## Common Windows Troubleshooting
+## Windows Troubleshooting
 
 ### Chrome crash / crashpad / access denied
 
@@ -240,7 +234,7 @@ What it does:
 Get-Process chrome,chromedriver -ErrorAction SilentlyContinue | Stop-Process -Force
 ```
 
-Then retry with an isolated Chrome profile:
+Retry with an isolated profile:
 
 ```powershell
 $env:HEADLESS="true"
@@ -248,7 +242,7 @@ $env:CHROME_USER_DATA_DIR="C:\Temp\orangehrm-chrome-profile"
 dotnet test
 ```
 
-### Docker engine or API pipe issue
+### Docker engine issues
 
 ```powershell
 docker version
@@ -256,34 +250,24 @@ docker context ls
 docker context use desktop-linux
 ```
 
-If Docker still appears stuck:
+If Docker still hangs:
 
 ```powershell
 wsl --shutdown
 ```
 
-Then reopen Docker Desktop and retry.
+## What This Project Demonstrates
 
-## Portfolio / Interview Talking Points
+- framework design for UI automation in C#
+- BDD implementation with SpecFlow
+- Docker-based remote execution
+- CI integration with GitHub Actions
+- handling flaky UI behavior in headless environments
+- maintainable Page Object Model structure
 
-This project demonstrates:
+## Recommended Next Enhancements
 
-- building a reusable automation framework from scratch
-- integrating BDD with SpecFlow and NUnit
-- designing maintainable page-object architecture
-- supporting local and containerized execution
-- handling flaky UI issues in CI/headless environments
-- setting up GitHub Actions for browser automation
-- generating and preserving test execution artifacts
-
-## Recommended Next Improvements
-
-- move feature files and generated outputs into a conventional `src/test` style layout if the project grows
-- add richer test data builders for employee and admin flows
-- add API or database-backed cleanup where available
-- split smoke and regression workflows into separate CI jobs
-- add screenshots or badges to the GitHub landing page
-
-## Repository
-
-- GitHub: [ajay9761/SeleniumCSharpBDD](https://github.com/ajay9761/SeleniumCSharpBDD)
+- add richer CRUD coverage for Admin and Recruitment modules
+- split smoke and regression into separate CI jobs
+- add Allure or richer trend reporting if needed
+- introduce test-data builders/factories for complex workflows

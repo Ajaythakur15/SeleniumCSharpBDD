@@ -100,6 +100,18 @@ SeleniumCSharpBDD
 `-- SeleniumCSharpBDD.csproj  # .NET test project
 ```
 
+```mermaid
+flowchart LR
+    A["SpecFlow Features"] --> B["Step Definitions"]
+    B --> C["Page Objects"]
+    C --> D["Driver Factory"]
+    D --> E["Local Chrome or Selenium Grid"]
+    B --> F["Hooks"]
+    F --> G["Extent Reports"]
+    F --> H["Screenshots / Cleanup"]
+    C --> I["Framework Config"]
+```
+
 ## Tech Stack
 
 | Area | Technology |
@@ -212,10 +224,10 @@ GitHub Actions workflow:
 What it does:
 
 - checks out the repo
-- restores and builds the project
-- starts Selenium standalone Chrome as a service
-- runs the tagged E2E suite
-- uploads the Extent report as an artifact
+- runs the suite through Docker Compose
+- starts Selenium standalone Chrome and the test container
+- exits the workflow with the test container's result
+- uploads the full report bundle, HTML report, screenshots, and Docker logs as artifacts
 
 ## Stability Enhancements
 

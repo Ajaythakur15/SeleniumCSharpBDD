@@ -32,6 +32,9 @@ namespace SeleniumCSharpBDD.Features
                 "regression",
                 "orangehrm"};
         
+#line 1 "OrangeHrmEndToEnd.feature"
+#line hidden
+        
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
@@ -76,7 +79,11 @@ namespace SeleniumCSharpBDD.Features
         
         public virtual void FeatureBackground()
         {
-            testRunner.Given("I am logged into OrangeHRM as an administrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 4
+#line hidden
+#line 5
+  testRunner.Given("I am logged into OrangeHRM as an administrator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -108,7 +115,9 @@ namespace SeleniumCSharpBDD.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Module", module);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify primary OrangeHRM modules are accessible", null, tagsOfScenario, argumentsOfScenario, featureTags);
-            this.ScenarioInitialize(scenarioInfo);
+#line 8
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
@@ -116,9 +125,15 @@ namespace SeleniumCSharpBDD.Features
             else
             {
                 this.ScenarioStart();
-                this.FeatureBackground();
-                testRunner.When(string.Format("I open the \"{0}\" module", module), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-                testRunner.Then(string.Format("the \"{0}\" module should be displayed", module), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 9
+  testRunner.When(string.Format("I open the \"{0}\" module", module), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+  testRunner.Then(string.Format("the \"{0}\" module should be displayed", module), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -136,7 +151,9 @@ namespace SeleniumCSharpBDD.Features
                     "docker"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create, search, and delete an employee through PIM", null, tagsOfScenario, argumentsOfScenario, featureTags);
-            this.ScenarioInitialize(scenarioInfo);
+#line 28
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
@@ -144,11 +161,21 @@ namespace SeleniumCSharpBDD.Features
             else
             {
                 this.ScenarioStart();
-                this.FeatureBackground();
-                testRunner.When("I create a new employee in PIM", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-                testRunner.Then("the employee should be searchable in PIM", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-                testRunner.When("I delete the employee from PIM", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-                testRunner.Then("the employee should not appear in PIM search results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 29
+  testRunner.When("I create a new employee in PIM", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 30
+  testRunner.Then("the employee should be searchable in PIM", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 31
+  testRunner.When("I delete the employee from PIM", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 32
+  testRunner.Then("the employee should not appear in PIM search results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

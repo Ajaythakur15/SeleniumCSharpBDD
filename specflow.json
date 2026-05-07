@@ -1,5 +1,5 @@
 {
   "generator": {
-    "allowDebugGeneratedFiles": true
+    "allowDebugGeneratedFiles": false
   }
 }

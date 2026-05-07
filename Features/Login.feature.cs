@@ -32,6 +32,9 @@ namespace SeleniumCSharpBDD.Features
                 "smoke",
                 "login"};
         
+#line 1 "Login.feature"
+#line hidden
+        
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
@@ -85,7 +88,9 @@ namespace SeleniumCSharpBDD.Features
                     "login"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Valid Login", null, tagsOfScenario, argumentsOfScenario, featureTags);
-            this.ScenarioInitialize(scenarioInfo);
+#line 5
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
@@ -93,9 +98,15 @@ namespace SeleniumCSharpBDD.Features
             else
             {
                 this.ScenarioStart();
-                testRunner.Given("I navigate to login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-                testRunner.When("I enter valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-                testRunner.Then("I should see dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+  testRunner.Given("I navigate to login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 7
+  testRunner.When("I enter valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 8
+  testRunner.Then("I should see dashboard", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

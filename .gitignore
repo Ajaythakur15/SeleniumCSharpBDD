@@ -8,6 +8,7 @@ TestResults/
 Screenshots/
 ExtentReport.html
 *.trx
+Features/*.feature.cs
 
 # IDE/user files
 .vs/
